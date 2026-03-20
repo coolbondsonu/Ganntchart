@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gantt Chart Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chart-bar"></i> Gantt Chart Generator</h1>
+            <p>Create professional Gantt charts instantly</p>
+        </header>
+
+        <div class="controls">
+            <div class="input-group">
+                <label>Project Start Date</label>
+                <input type="date" id="startDate" value="2024-01-01">
+            </div>
+            <div class="input-group">
+                <label>Tasks (JSON format)</label>
+                <textarea id="tasksInput" placeholder='[
+  {"name": "Planning", "start": "2024-01-01", "duration": 10, "color": "#3498db", "progress": 100},
+  {"name": "Design", "start": "2024-01-11", "duration": 15, "color": "#e74c3c", "progress": 80}
+]'>[
+  {
+    "name": "Planning",
+    "start": "2024-01-01",
+    "duration": 10,
+    "color": "#3498db",
+    "progress": 100
+  },
+  {
+    "name": "Design",
+    "start": "2024-01-11",
+    "duration": 15,
+    "color": "#e74c3c",
+    "progress": 80
+  },
+  {
+    "name": "Development",
+    "start": "2024-01-26",
+    "duration": 30,
+    "color": "#2ecc71",
+    "progress": 50
+  },
+  {
+    "name": "Testing",
+    "start": "2024-02-25",
+    "duration": 10,
+    "color": "#f39c12",
+    "progress": 20
+  },
+  {
+    "name": "Deployment",
+    "start": "2024-03-06",
+    "duration": 5,
+    "color": "#9b59b6",
+    "progress": 0
+  }
+]</textarea>
+            </div>
+            <div class="button-group">
+                <button onclick="generateChart()" class="btn-primary">
+                    <i class="fas fa-magic"></i> Generate Chart
+                </button>
+                <button onclick="exportPNG()" class="btn-secondary">
+                    <i class="fas fa-download"></i> Export PNG
+                </button>
+                <button onclick="exportExcel()" class="btn-excel">
+                    <i class="fas fa-file-excel"></i> Export Excel
+                </button>
+                <button onclick="downloadOneClick()" class="btn-download">
+                    <i class="fas fa-cloud-download-alt"></i> One-Click Download
+                </button>
+                <button onclick="exportJSON()" class="btn-outline">
+                    <i class="fas fa-file-code"></i> Export JSON
+                </button>
+                <button onclick="clearAll()" class="btn-outline">
+                    <i class="fas fa-trash"></i> Clear
+                </button>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div id="chart" class="gantt-chart"></div>
+            <div id="error" class="error-message"></div>
+        </div>
+
+        <div class="example">
+            <h3><i class="fas fa-lightbulb"></i> JSON Format</h3>
+            <pre>{
+  "name": "Task Name",
+  "start": "YYYY-MM-DD",
+  "duration": 10,
+  "color": "#3498db",
+  "progress": 75
+}</pre>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
